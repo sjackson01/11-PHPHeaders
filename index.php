@@ -32,6 +32,15 @@ if(!$name){
 }
 
 // Get the image information: 
-    
+$info = getimagesize($image);
+$fs = filesize($image);
+
+// Send the content information
+header ("Content-Type: {$info['mime']} \n");
+header ("Content-Disposition: inline; filename=\"name\"\n");
+header ("Content-Length: $fs\n");
+
+//Send the file
+readfile($image);
 
 ?>
